@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://das52bkp2essc"]
+
+[ext_resource type="PackedScene" uid="uid://pq5n1dip1g7j" path="res://world/parallax.tscn" id="1_31vx2"]
+[ext_resource type="Texture2D" uid="uid://dwuhcoxsl27bo" path="res://world/chemical plant.png" id="2_3hbml"]
+
+[node name="Node2D" instance=ExtResource("1_31vx2")]
+
+[node name="factory" parent="." index="0"]
+repeat_times = 50
+
+[node name="Sprite2D" parent="factory" index="0"]
+texture = ExtResource("2_3hbml")

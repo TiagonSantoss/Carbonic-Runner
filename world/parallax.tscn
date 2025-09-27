@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://pq5n1dip1g7j"]
+
+[ext_resource type="Texture2D" uid="uid://26cl0uns0py6" path="res://world/outdoor.png" id="1_6wet6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="factory" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(0, 50)
+repeat_times = 30
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="factory"]
+texture = ExtResource("1_6wet6")

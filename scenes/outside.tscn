@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx01v5pepf62n"]
+
+[ext_resource type="PackedScene" uid="uid://pq5n1dip1g7j" path="res://world/parallax.tscn" id="1_8lkp2"]
+[ext_resource type="Script" uid="uid://cpc5q3ncs1meh" path="res://scenes/outside.gd" id="1_bkgx0"]
+[ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/penguim.tscn" id="1_nsm10"]
+[ext_resource type="PackedScene" uid="uid://hrgl1o4ekk27" path="res://world/platform.tscn" id="2_8lkp2"]
+[ext_resource type="PackedScene" uid="uid://dco8vw3s4l7o0" path="res://world/inv.tscn" id="4_udpx5"]
+[ext_resource type="PackedScene" uid="uid://cseudn7o0vday" path="res://scenes/sceneTrigger.tscn" id="6_bkgx0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaw8k"]
+size = Vector2(157, 164)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_bkgx0")
+
+[node name="factory" parent="." instance=ExtResource("1_8lkp2")]
+position = Vector2(1351, -2076)
+scale = Vector2(5.215485, 3.4416752)
+
+[node name="player" parent="." instance=ExtResource("1_nsm10")]
+position = Vector2(1312.9999, 1025)
+gravity = 1600
+jump_force = -800
+max_jump_time = 0.8
+move_speed = 1200
+ground_accel = 1.0
+air_accel = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(8.702278e-05, -14.245944)
+scale = Vector2(1.0000001, 1)
+zoom = Vector2(1.4, 1.4)
+limit_left = 15
+limit_top = -4275
+limit_right = 2670
+limit_bottom = 1075
+limit_smoothed = true
+position_smoothing_speed = 10.0
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1296.9999, 870.00006)
+scale = Vector2(4.551531, 0.094395004)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1807.9999, 784)
+scale = Vector2(4.3105073, 0.028024761)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(757, 655.00006)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1307, 341.0001)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1894, -46.99997)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1227, -462.99997)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D10" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(656, -747)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1928, -892)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D11" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(1270, -1149)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_8lkp2")]
+position = Vector2(481, 100.999985)
+rotation = -3.1415927
+scale = Vector2(4.507265, 0.46874404)
+
+[node name="inv" parent="." instance=ExtResource("4_udpx5")]
+position = Vector2(1365, 1338)
+scale = Vector2(209.08002, 27.279999)
+
+[node name="inv2" parent="." instance=ExtResource("4_udpx5")]
+position = Vector2(2832, -959.00006)
+rotation = 1.5707964
+scale = Vector2(209.08002, 27.279999)
+
+[node name="inv3" parent="." instance=ExtResource("4_udpx5")]
+position = Vector2(-237, -886)
+rotation = 1.5707964
+scale = Vector2(209.08002, 27.279999)
+
+[node name="EntranceMarkers" type="Node2D" parent="."]
+
+[node name="inside" type="Marker2D" parent="EntranceMarkers"]
+position = Vector2(1268, -1422)
+
+[node name="Area2D" parent="." instance=ExtResource("6_bkgx0")]
+position = Vector2(1262, -1223)
+connected_scene = "inside"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, -38)
+shape = SubResource("RectangleShape2D_uaw8k")

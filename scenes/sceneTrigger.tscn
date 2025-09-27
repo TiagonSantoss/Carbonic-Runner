@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cseudn7o0vday"]
+
+[ext_resource type="Script" uid="uid://c54320adav1yw" path="res://scenes/scene_trigger.gd" id="1_4moab"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4moab")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
