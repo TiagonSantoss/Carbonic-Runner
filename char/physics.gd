@@ -49,9 +49,11 @@ func _physics_process(delta) -> void:
 	else:
 		handle_movement(input_dir, air_accel, air_friction, delta)
 		
+	var cols = is_touching("gel")
+	print(cols)
 	#print(round(velocity.length()))
 	#JUMP
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 0.0) and not jumping:
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 1.0) and not jumping:
 		velocity.y = jump_force
 		jumping = true
 		jump_timer = 0.0
@@ -90,7 +92,6 @@ func _physics_process(delta) -> void:
 	animation_player.speed_scale = speed_multiplier
 	move_and_slide()
 	
-	
 func handle_movement(input_dir, accel, friction, delta):
 	if input_dir != 0:
 		var target = input_dir * move_speed
@@ -98,6 +99,17 @@ func handle_movement(input_dir, accel, friction, delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body)
+func is_touching(type) -> bool:
+	for i in range(get_slide_collision_count()):
+		var col = get_slide_collision(i)
+		
+		if col.get_collider() is TileMapLayer:
+			var tilemap: TileMapLayer = col.get_collider()
+			var cell = tilemap.local_to_map(col.get_position())
+			var tile_data = tilemap.get_cell_tile_data(cell)
+			
+			if tile_data:
+				print(tile_data.get_custom_data("type"))
+				return true
+				
+	return false
