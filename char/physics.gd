@@ -24,6 +24,7 @@ var coyote_timer = 0.0
 var animation_direction = "Right"
 var animation_to_play = "Idle"
 var last_facing = "Left"
+var jump_played = false
 
 func _ready() -> void:
 	animation_player.stop()
@@ -41,6 +42,7 @@ func _physics_process(delta) -> void:
 		coyote_timer = coyote_time
 		jump_timer = 0.0
 		jumping = false
+		jump_played = false
 		
 	#MOVEMENT
 	var input_dir = Input.get_axis("ui_left", "ui_right")
@@ -75,7 +77,12 @@ func _physics_process(delta) -> void:
 	if is_on_floor():
 		animation_to_play = "Walk" if round(velocity.length() * 10) / 10 > 0.0 else "Idle"
 	else:
-		animation_to_play = "Jump"
+		if velocity.y < 0:
+			if not jump_played:
+				animation_to_play = "Jump"
+				jump_played = true
+		else:
+			animation_to_play = "Fall"
 		
 	var speed_multiplier = 0.0
 	if animation_to_play == "Jump":
@@ -85,7 +92,6 @@ func _physics_process(delta) -> void:
 		speed_multiplier = 1.2
 		
 	sprite_2D.flip_h = (last_facing == "Left")
-	#print(animation_to_play)
 	
 	if animation_player.current_animation != animation_to_play:
 		animation_player.play(animation_to_play, -1, 1.0)
