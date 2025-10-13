@@ -3,6 +3,7 @@ class_name Player
 
 #upload2 peido ass victor
 #GRAV
+#codigos
 @export var gravity = 900
 @export var jump_force = -400
 @export var max_jump_time = 0.3
