@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctjpv0dgf8fsx"]
+
+[ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/pinguim.tscn" id="1_xqycc"]
+[ext_resource type="Texture2D" uid="uid://dchqdhp176duc" path="res://RATO.png" id="2_xqycc"]
+
+[sub_resource type="Animation" id="Animation_3inll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nno7"]
+_data = {
+&"RESET": SubResource("Animation_3inll")
+}
+
+[sub_resource type="Animation" id="Animation_4d711"]
+resource_name = "Fall"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [13, 13]
+}
+
+[sub_resource type="Animation" id="Animation_jrrh6"]
+resource_name = "Walk_right"
+length = 0.62
+loop_mode = 2
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_188ms"]
+resource_name = "jump"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.035775177, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [10, 11, 12, 13, 13]
+}
+
+[sub_resource type="Animation" id="Animation_k4pmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ertaf"]
+resource_name = "walk_right"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_8pubv"]
+resource_name = "dive"
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ertaf"]
+_data = {
+&"Fall": SubResource("Animation_4d711"),
+&"Idle": SubResource("Animation_jrrh6"),
+&"Jump": SubResource("Animation_188ms"),
+&"RESET": SubResource("Animation_k4pmq"),
+&"Walk": SubResource("Animation_ertaf"),
+&"dive": SubResource("Animation_8pubv")
+}
+
+[sub_resource type="Animation" id="Animation_x74gk"]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67cbq"]
+_data = {
+&"Intro": SubResource("Animation_x74gk")
+}
+
+[node name="Pinguim" instance=ExtResource("1_xqycc")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-16.0405, -14.245942)
+texture = ExtResource("2_xqycc")
+hframes = 9
+vframes = 9
+frame = 13
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-3.0421648, -7.9271812)
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_6nno7"),
+&"pinguim": SubResource("AnimationLibrary_ertaf"),
+&"rato": SubResource("AnimationLibrary_67cbq")
+}
