@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk1dhacwemag1"]
+
+[ext_resource type="Script" uid="uid://cpw2ehrakrflu" path="res://camera/corner_camera.gd" id="2_s7i7g"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("2_s7i7g")
+crop_radius = null
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://eb3ws1mx6i8c" path="res://char/penguimsprites.png" id="2_jrrh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
-size = Vector2(27.102903, 33.161816)
+size = Vector2(17.699856, 22.517776)
 
 [sub_resource type="Animation" id="Animation_4d711"]
 resource_name = "Fall"
@@ -17,10 +17,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [12, 13, 13]
+"values": [13, 13]
 }
 
 [sub_resource type="Animation" id="Animation_jrrh6"]
@@ -52,7 +52,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.035775177, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [10, 11, 12, 13, 13]
@@ -112,15 +112,14 @@ gravity = 1200
 ground_accel = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -17.5)
-scale = Vector2(0.14473684, 0.12195123)
+position = Vector2(-0.55312085, -14.475719)
+scale = Vector2(0.10371013, 0.095140465)
 texture = ExtResource("2_jrrh6")
 hframes = 5
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0.27655935, -18.419106)
+position = Vector2(-0.5531208, -13.556629)
 scale = Vector2(1.0000004, 1)
 shape = SubResource("RectangleShape2D_44cfe")
 
@@ -128,4 +127,3 @@ shape = SubResource("RectangleShape2D_44cfe")
 libraries = {
 &"": SubResource("AnimationLibrary_ertaf")
 }
-speed_scale = 0.6

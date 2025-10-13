@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-#upload
+#upload2
 #GRAV
 @export var gravity = 900
 @export var jump_force = -400
@@ -52,8 +52,7 @@ func _physics_process(delta) -> void:
 	else:
 		handle_movement(input_dir, air_accel, air_friction, delta)
 		
-	var cols = is_touching("gel")
-	print(cols)
+	#var cols = is_touching("gel")
 	#print(round(velocity.length()))
 	#JUMP
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 1.0) and not jumping:
@@ -106,7 +105,7 @@ func handle_movement(input_dir, accel, friction, delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 
-func is_touching(type) -> bool:
+func is_touching() -> bool:
 	for i in range(get_slide_collision_count()):
 		var col = get_slide_collision(i)
 		

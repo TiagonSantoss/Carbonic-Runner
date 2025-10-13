@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://co5ht0b43i4ko"]
+
+[ext_resource type="Script" uid="uid://dckwcdpeh3nqg" path="res://camera/crop_camera.gd" id="1_17puw"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_17puw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
