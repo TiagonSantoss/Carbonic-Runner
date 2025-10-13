@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u4v4w0wrf7nl"
-path="res://.godot/imported/RATO.png-1d902ade09de71fabc6ff356183bceb9.ctex"
+uid="uid://dchqdhp176duc"
+path="res://.godot/imported/RATO.png-e66bbb32aaf5b302acb02f6c38ca88cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RATO.png"
-dest_files=["res://.godot/imported/RATO.png-1d902ade09de71fabc6ff356183bceb9.ctex"]
+source_file="res://char/RATO.png"
+dest_files=["res://.godot/imported/RATO.png-e66bbb32aaf5b302acb02f6c38ca88cf.ctex"]
 
 [params]
 
