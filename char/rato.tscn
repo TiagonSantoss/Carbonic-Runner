@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ctjpv0dgf8fsx"]
 
 [ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/pinguim.tscn" id="1_xqycc"]
-[ext_resource type="Texture2D" uid="uid://dchqdhp176duc" path="res://RATO.png" id="2_xqycc"]
+[ext_resource type="Texture2D" uid="uid://u4v4w0wrf7nl" path="res://RATO.png" id="2_xqycc"]
 
 [sub_resource type="Animation" id="Animation_3inll"]
 length = 0.001
@@ -153,7 +153,7 @@ vframes = 9
 frame = 13
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-3.0421648, -7.9271812)
+position = Vector2(-3.0421643, -8.042066)
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
