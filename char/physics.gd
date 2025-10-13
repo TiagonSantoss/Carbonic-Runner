@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-#upload2
+#upload2 peido ass victor
 #GRAV
 @export var gravity = 900
 @export var jump_force = -400

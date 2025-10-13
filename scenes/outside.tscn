@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceysohmyny3eh" path="res://tileset_predios.png" id="6_uaw8k"]
 [ext_resource type="PackedScene" uid="uid://dk1dhacwemag1" path="res://camera/corner_camera.tscn" id="7_5tstl"]
 [ext_resource type="PackedScene" uid="uid://co5ht0b43i4ko" path="res://camera/crop_camera.tscn" id="7_lt5my"]
-[ext_resource type="Texture2D" uid="uid://cwngvt7elxy5p" path="res://factory.png" id="7_uaw8k"]
+[ext_resource type="Texture2D" uid="uid://cwngvt7elxy5p" path="res://TileSetttttATUALIZADO.png" id="7_uaw8k"]
 
 [sub_resource type="GDScript" id="GDScript_bkgx0"]
 script/source = "extends Camera2D
