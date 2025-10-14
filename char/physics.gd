@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 #upload2 peido ass victor
-#quem leu é gaiyyyy
+#ppppppp
 #GRAV
 #codigos
 @export var gravity = 900
