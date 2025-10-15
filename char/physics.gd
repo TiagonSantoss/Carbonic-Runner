@@ -6,7 +6,9 @@ class_name Player
 #GRAV
 #codigos
 @export var gravity = 900
+@export var gravity_mult = 1.0
 @export var jump_force = -400
+@export var jump_mult = 1.0
 @export var max_jump_time = 0.3
 @export var move_speed = 500
 @export var max_fall_speed = 1000
@@ -36,7 +38,11 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	#GRAVITY
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		#velocity.y += gravity*gravity_mult * delta 
+		if Input.is_action_pressed("ui_down"):
+			velocity.y += int(gravity * gravity_mult) * delta
+		else:
+			velocity.y += gravity * delta
 		velocity.y = min(velocity.y, max_fall_speed)
 		coyote_timer -= delta
 	else:
@@ -58,7 +64,7 @@ func _physics_process(delta) -> void:
 	#print(round(velocity.length()))
 	#JUMP
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 1.0) and not jumping:
-		velocity.y = jump_force
+		velocity.y = jump_force*jump_mult
 		jumping = true
 		jump_timer = 0.0
 		coyote_timer = 0.0
