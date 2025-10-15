@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://eb3ws1mx6i8c" path="res://char/penguimsprites.png" id="2_jrrh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
-size = Vector2(25.996664, 32.702282)
+size = Vector2(27.656025, 29.410976)
 
 [sub_resource type="Animation" id="Animation_4d711"]
 resource_name = "Fall"
@@ -113,13 +113,13 @@ ground_accel = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.55312085, -14.475719)
-scale = Vector2(0.10371013, 0.095140465)
+scale = Vector2(0.15, 0.137)
 texture = ExtResource("2_jrrh6")
 hframes = 5
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.27656102, -18.648878)
+position = Vector2(-1.1062417, -11.488666)
 scale = Vector2(1.0000004, 1)
 shape = SubResource("RectangleShape2D_44cfe")
 

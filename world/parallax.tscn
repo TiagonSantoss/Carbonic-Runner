@@ -6,7 +6,7 @@
 
 [node name="factory" type="Parallax2D" parent="."]
 scroll_scale = Vector2(-0.05, 0)
-repeat_size = Vector2(511, 0)
+repeat_size = Vector2(511, 30)
 autoscroll = Vector2(5, 0)
 repeat_times = 12
 follow_viewport = false
