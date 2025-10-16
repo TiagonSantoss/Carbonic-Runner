@@ -137,13 +137,14 @@ navigation_enabled = false
 position = Vector2(-9011.999, 697)
 floor_constant_speed = true
 gravity = 1600
-gravity_mult = 3.0
+gravity_mult = 5.0
 jump_force = -750
+jump_mult = 1.5
 max_jump_time = 2.0
-move_speed = 4060
+move_speed = 3000
 max_fall_speed = 3070
 ground_accel = 0.5
-ground_friction = 1.0
+ground_friction = 4.0
 air_accel = 0.7
 coyote_time = -1.525
 
