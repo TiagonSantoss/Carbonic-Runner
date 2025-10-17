@@ -1,23 +1,25 @@
 class_name BaseScene extends Node
 
-@onready var player = $player
 @onready var entrance_markers = $EntranceMarkers
 
 func _ready():
-	if sceneManager.player:
-		if player:
-			player.queue_free()
-		player = sceneManager.player
-		add_child(player)
-	position_player()
+	for p in sceneManager.players:
+		if p.get_parent():
+			p.get_parent().remove_child(p)
+		add_child(p)
+		position_player(p)
 
 
-func position_player() -> void:
+func position_player(p: Player) -> void:
 	var last_scene = sceneManager.last_scene_name
 	if last_scene.is_empty():
 		last_scene = "any"
 	
-	print(last_scene)
 	for entrace in entrance_markers.get_children():
 		if entrace is Marker2D and entrace.name == last_scene:
-			player.position = entrace.global_position
+			var offset = Vector2(20,0) if p == sceneManager.players[0] else Vector2(-20,0)
+			p.position = entrace.global_position + offset
+			
+			var speed = p.velocity.length()
+			if speed != 0:
+				p.velocity = p.velocity.normalized() * round(speed * 0.5)
