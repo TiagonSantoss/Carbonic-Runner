@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
 size = Vector2(21.571701, 25.734604)
 
-[sub_resource type="Animation" id="Animation_4d711"]
+[sub_resource type="Animation" id="Animation_xkldy"]
 resource_name = "Fall"
 length = 0.5
 step = 0.05
@@ -23,8 +23,28 @@ tracks/0/keys = {
 "values": [13, 13]
 }
 
-[sub_resource type="Animation" id="Animation_jrrh6"]
-resource_name = "Walk_right"
+[sub_resource type="Animation" id="Animation_3ux7t"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0ksn7"]
+resource_name = "dive"
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_3nq0x"]
+resource_name = "Idle"
 length = 0.62
 loop_mode = 2
 step = 0.3
@@ -41,40 +61,8 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 3, 2]
 }
 
-[sub_resource type="Animation" id="Animation_188ms"]
-resource_name = "jump"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [10, 11, 12, 13, 13]
-}
-
-[sub_resource type="Animation" id="Animation_k4pmq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_ertaf"]
-resource_name = "walk_right"
+[sub_resource type="Animation" id="Animation_xtcse"]
+resource_name = "Walk"
 length = 0.5
 loop_mode = 1
 step = 0.05
@@ -91,25 +79,40 @@ tracks/0/keys = {
 "values": [6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_8pubv"]
-resource_name = "dive"
+[sub_resource type="Animation" id="Animation_rvjr6"]
+resource_name = "Jump"
+length = 0.5
 step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [10, 11, 12, 13, 13]
+}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ertaf"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axqqw"]
 _data = {
-&"Fall": SubResource("Animation_4d711"),
-&"Idle": SubResource("Animation_jrrh6"),
-&"Jump": SubResource("Animation_188ms"),
-&"RESET": SubResource("Animation_k4pmq"),
-&"Walk": SubResource("Animation_ertaf"),
-&"dive": SubResource("Animation_8pubv")
+&"Fall": SubResource("Animation_xkldy"),
+&"Idle": SubResource("Animation_3nq0x"),
+&"Jump": SubResource("Animation_rvjr6"),
+&"RESET": SubResource("Animation_3ux7t"),
+&"Walk": SubResource("Animation_xtcse"),
+&"dive": SubResource("Animation_0ksn7")
 }
 
 [node name="Pinguim" type="CharacterBody2D"]
 scale = Vector2(1.8079237, 2.1760583)
+collision_layer = 0
 script = ExtResource("1_ij6vw")
-gravity = 1200
-ground_accel = 50.0
+hold_jump_multiplier = 2.0
+move_speed = 2500
+ground_accel = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.55312085, -14.475719)
@@ -125,5 +128,5 @@ shape = SubResource("RectangleShape2D_44cfe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_ertaf")
+&"": SubResource("AnimationLibrary_axqqw")
 }

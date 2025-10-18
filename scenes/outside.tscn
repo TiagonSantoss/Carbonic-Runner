@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dx01v5pepf62n"]
+[gd_scene load_steps=14 format=4 uid="uid://dx01v5pepf62n"]
 
 [ext_resource type="PackedScene" uid="uid://pq5n1dip1g7j" path="res://world/parallax.tscn" id="1_8lkp2"]
 [ext_resource type="Script" uid="uid://cpc5q3ncs1meh" path="res://scenes/outside.gd" id="1_bkgx0"]
@@ -111,6 +111,14 @@ func set_camera_limits_from_tilemap():
 	limit_top = int(map_world_start.y)
 "
 
+[sub_resource type="GDScript" id="GDScript_uaw8k"]
+script/source = "extends Player
+
+func _physics_process(delta: float) -> void:
+	super(delta)
+	#Physics.handle_animation(\"pinguim\")
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uaw8k"]
 size = Vector2(207.5, 338)
 
@@ -147,26 +155,27 @@ position_smoothing_speed = 35.0
 script = SubResource("GDScript_bkgx0")
 map_tilemap = NodePath("../ground")
 
-[node name="player1" parent="." instance=ExtResource("1_nsm10")]
-position = Vector2(-9011.999, 697)
-floor_constant_speed = true
-gravity = 1600
-gravity_mult = 3.0
-jump_force = -760
-move_speed = 2650
-max_fall_speed = 2650
-ground_accel = 0.8
-ground_friction = 5.0
-air_accel = 2.0
-air_friction = 0.8
-
 [node name="player2" parent="." instance=ExtResource("6_lt5my")]
-position = Vector2(-9099, 664)
+position = Vector2(-9063, 682)
 scale = Vector2(1.8079239, 2.1760583)
 collision_layer = 2
 collision_mask = 3
-gravity = 2000
-jump_force = -750
+script = SubResource("GDScript_uaw8k")
+gravity = 1600
+hold_jump_multiplier = 1.0
+
+[node name="player1" parent="." instance=ExtResource("1_nsm10")]
+position = Vector2(-9010.999, 699.00006)
+floor_constant_speed = true
+script = SubResource("GDScript_uaw8k")
+gravity = 1600
+gravity_mult = 3.0
+move_speed = 2650
+max_fall_speed = 2650
+ground_accel = 2.0
+ground_friction = 5.0
+air_accel = 2.0
+air_friction = 0.8
 
 [node name="EntranceMarkers" type="Node2D" parent="."]
 

@@ -1,128 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctjpv0dgf8fsx"]
+[gd_scene load_steps=7 format=3 uid="uid://ctjpv0dgf8fsx"]
 
 [ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/pinguim.tscn" id="1_xqycc"]
 [ext_resource type="Texture2D" uid="uid://u4v4w0wrf7nl" path="res://RATO.png" id="2_xqycc"]
 
-[sub_resource type="Animation" id="Animation_3inll"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [13]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nno7"]
-_data = {
-&"RESET": SubResource("Animation_3inll")
-}
-
-[sub_resource type="Animation" id="Animation_4d711"]
-resource_name = "Fall"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [13, 13]
-}
-
-[sub_resource type="Animation" id="Animation_jrrh6"]
-resource_name = "Walk_right"
-length = 0.62
-loop_mode = 2
-step = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 3, 2]
-}
-
-[sub_resource type="Animation" id="Animation_188ms"]
-resource_name = "jump"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.035775177, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [10, 11, 12, 13, 13]
-}
-
-[sub_resource type="Animation" id="Animation_k4pmq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_ertaf"]
-resource_name = "walk_right"
-length = 0.5
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_8pubv"]
-resource_name = "dive"
-step = 0.05
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ertaf"]
-_data = {
-&"Fall": SubResource("Animation_4d711"),
-&"Idle": SubResource("Animation_jrrh6"),
-&"Jump": SubResource("Animation_188ms"),
-&"RESET": SubResource("Animation_k4pmq"),
-&"Walk": SubResource("Animation_ertaf"),
-&"dive": SubResource("Animation_8pubv")
-}
-
-[sub_resource type="Animation" id="Animation_x74gk"]
+[sub_resource type="Animation" id="Animation_xqycc"]
+resource_name = "Idle"
 length = 4.1
 step = 0.1
 tracks/0/type = "value"
@@ -138,7 +20,24 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 }
 
-[sub_resource type="Animation" id="Animation_xqycc"]
+[sub_resource type="Animation" id="Animation_3inll"]
+resource_name = "Jump"
+length = 1.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75]
+}
+
+[sub_resource type="Animation" id="Animation_6nno7"]
 resource_name = "Walk"
 length = 0.42
 loop_mode = 2
@@ -156,31 +55,15 @@ tracks/0/keys = {
 "values": [48, 49, 50, 51, 52]
 }
 
-[sub_resource type="Animation" id="Animation_6nno7"]
-resource_name = "Jump"
-length = 1.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_67cbq"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x74gk"]
 _data = {
-&"Idle": SubResource("Animation_x74gk"),
-&"Jump": SubResource("Animation_6nno7"),
-&"Walk": SubResource("Animation_xqycc")
+&"Idle": SubResource("Animation_xqycc"),
+&"Jump": SubResource("Animation_3inll"),
+&"Walk": SubResource("Animation_6nno7")
 }
 
 [node name="rato" instance=ExtResource("1_xqycc")]
+collision_layer = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(4.5474735e-13, 0.919093)
@@ -188,14 +71,12 @@ texture = ExtResource("2_xqycc")
 offset = Vector2(-129.06155, -57.024033)
 hframes = 9
 vframes = 9
-frame = 13
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(9.536743e-07, 0)
+position = Vector2(-0.435, -0.545)
+scale = Vector2(0.86, 0.86)
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
-&"": SubResource("AnimationLibrary_6nno7"),
-&"pinguim": SubResource("AnimationLibrary_ertaf"),
-&"rato": SubResource("AnimationLibrary_67cbq")
+&"": SubResource("AnimationLibrary_x74gk")
 }

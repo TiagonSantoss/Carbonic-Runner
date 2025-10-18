@@ -12,3 +12,4 @@ func _ready():
 func _process(delta):
 	PlayerManager.update_follower(delta)
 	PlayerManager.update_camera(delta)
+	PlayerManager.update_animations(player1,player2)
