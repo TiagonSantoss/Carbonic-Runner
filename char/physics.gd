@@ -24,7 +24,7 @@ var coyote_timer = 0.0
 @onready var sprite_2D: Sprite2D = $Sprite2D
 var animation_to_play = "Idle"
 var jump_played = false
-var right: bool
+var right = true
 
 # --- FOLLOWER ---
 var control_enabled: bool = true
@@ -99,20 +99,21 @@ func play_generic(anim_name: String, speed: float = 1.0) -> void:
 			animation_player.play(anim_name, -1, speed)
 		else:
 			push_warning("Animation not found for %s: %s" % [self.name, anim_name])
-	sprite_2D.flip_h = not right
+			
+	sprite_2D.flip_h = velocity.x < 0 if abs(velocity.x) > 0.1 else sprite_2D.flip_h
 
-func update_animation() -> void:
-	if is_on_floor():
-		animation_to_play = "Walk" if abs(velocity.x) > 0.1 else "Idle"
-	else:
-		if velocity.y < 0 and not jump_played:
-			animation_to_play = "Jump"
-			jump_played = true
-		else:
-			animation_to_play = "Fall"
-	sprite_2D.flip_h = not right
-	if animation_player.current_animation != animation_to_play:
-		animation_player.play(animation_to_play)
+#func update_animation() -> void:
+#	if is_on_floor():
+#		animation_to_play = "Walk" if abs(velocity.x) > 0.1 else "Idle"
+#	else:
+#		if velocity.y < 0 and not jump_played:
+#			animation_to_play = "Jump"
+#			jump_played = true
+#		else:
+#			animation_to_play = "Fall"
+#	sprite_2D.flip_h = not right
+#	if animation_player.current_animation != animation_to_play:
+#		animation_player.play(animation_to_play)
 
 func set_follower(state: bool) -> void:
 	is_follower = state

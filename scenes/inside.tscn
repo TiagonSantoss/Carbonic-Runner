@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://1pyls8qoywgm"]
+[gd_scene load_steps=7 format=3 uid="uid://1pyls8qoywgm"]
 
 [ext_resource type="Script" uid="uid://crkso4vvjs3ia" path="res://scenes/inside.gd" id="1_08jqi"]
 [ext_resource type="PackedScene" uid="uid://das52bkp2essc" path="res://world/parallax2.tscn" id="1_hqivc"]
@@ -7,6 +7,29 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2b3hl"]
 size = Vector2(113, 144)
+
+[sub_resource type="GDScript" id="GDScript_08jqi"]
+script/source = "extends Camera2D
+@export var map_tilemap: TileMapLayer # Export a variable to link to your TileMap
+
+#func _ready() -> void:
+	#if map_tilemap:
+	#	set_camera_limits_from_tilemap()
+		
+func set_camera_limits_from_tilemap():
+	if not map_tilemap:
+		return
+	var used_rect = map_tilemap.get_used_rect()
+	var _tile_size = map_tilemap.tile_set.tile_size
+	
+	var map_world_start = map_tilemap.map_to_local(used_rect.position)
+	var map_world_end = map_tilemap.map_to_local(used_rect.position + used_rect.size)
+	
+	limit_left = int(map_world_start.x)
+	limit_right = int(map_world_end.x)
+	limit_bottom = int(map_world_end.y)
+	limit_top = int(map_world_start.y)
+"
 
 [node name="inside" type="Node2D"]
 script = ExtResource("1_08jqi")
@@ -32,12 +55,27 @@ scale = Vector2(561.51636, 4.2795157)
 [node name="EntranceMarkers" type="Node2D" parent="."]
 
 [node name="outside" type="Marker2D" parent="EntranceMarkers"]
-position = Vector2(1049, 988)
+position = Vector2(637, 1001)
 
-[node name="Area2D" parent="." instance=ExtResource("4_08jqi")]
-position = Vector2(1324, 993)
+[node name="THERES NO WAY OUT" parent="." instance=ExtResource("4_08jqi")]
+position = Vector2(1687, 1409)
+collision_layer = 3
+collision_mask = 3
 connected_scene = "outside"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(751, -190)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="THERES NO WAY OUT"]
+position = Vector2(136, -46)
 shape = SubResource("RectangleShape2D_2b3hl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-9011.999, 666)
+scale = Vector2(1.8079239, 2.1760583)
+ignore_rotation = false
+zoom = Vector2(1.095, 1.095)
+process_callback = 0
+limit_left = -10124
+limit_top = -2508
+limit_right = 14276
+limit_bottom = 1077
+position_smoothing_speed = 35.0
+script = SubResource("GDScript_08jqi")

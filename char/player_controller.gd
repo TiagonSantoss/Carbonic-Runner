@@ -5,8 +5,8 @@ var follower_player: Player
 var camera: Camera2D
 var right := false
 
-@export var max_distance := 1200.0
-@export var follow_distance := 100.0
+@export var max_distance := 700.0
+@export var follow_distance := 200.0
 #@export var follow_speed := 5000.0
 
 func set_players(active: Player, follower: Player) -> void:
@@ -28,27 +28,45 @@ func update_follower(delta: float):
 	var dist = dir.length()
 	#follower_player.global_position = lerp(follower_player.global_position, active_player.global_position, 0.2)
 	if dist > max_distance:
-		# Too far: move directly toward player ignoring obstacles
-		follower_player.global_position = follower_player.global_position.lerp(active_player.global_position, 0.25)
-		follower_player.velocity.x = 0
+		# Too far: run faster toward player, but don't teleport
+		dir = dir.normalized()
+		var catch_up_speed = follower_player.move_speed * 3.0  # 3× normal speed
+		var target_vel_x = dir.x * catch_up_speed
+		follower_player.velocity.x = lerp(
+			follower_player.velocity.x,
+			target_vel_x,
+			follower_player.ground_accel * 60 * delta
+		)
 	else:
 		if dist > follow_distance:
 			dir = dir.normalized()
-			var target_velocity_x = dir.x * follower_player.max_speed
-			follower_player.velocity.x = lerp(follower_player.velocity.x, target_velocity_x, follower_player.ground_accel * delta)
+			var target_velocity_x = dir.x * follower_player.move_speed
+			follower_player.velocity.x = lerp(follower_player.velocity.x, target_velocity_x, follower_player.ground_accel * 3.0 * delta)
 		else:
 			follower_player.velocity.x = lerp(follower_player.velocity.x, 0.0, follower_player.ground_friction * delta)
+	
+	var flip_offset := 36.0
 
-	# Flip sprite based on horizontal movement
 	if abs(follower_player.velocity.x) > 0.1:
-		follower_player.sprite.flip_h = follower_player.velocity.x < 0
-	elif dist > max_distance:
-		# If catching up by lerp, flip based on direction to player
-		follower_player.sprite_2D.flip_h = dir.x < 0
+		var is_flipped = follower_player.velocity.x < 0
+		follower_player.sprite_2D.flip_h = is_flipped
+
+		# Adjust visual offset based on flip
+		if is_flipped:
+			follower_player.sprite_2D.position.x = flip_offset
+		else:
+			follower_player.sprite_2D.position.x = 0
+
+	#if follower_player:
+	#	if abs(follower_player.velocity.x) > 0.1:
+	#		follower_player.sprite_2D.flip_h = follower_player.velocity.x < 0
+	#	elif dist > max_distance:
+	#		# If catching up by lerp, flip based on direction to player
+	#		follower_player.sprite_2D.flip_h = dir.x < 0
 
 	# Flip sprite
-	if abs(follower_player.velocity.x) > 0.1:
-		follower_player.sprite_2D.flip_h = follower_player.velocity.x < 0
+	#if abs(follower_player.velocity.x) > 0.1:
+	#	follower_player.sprite_2D.flip_h = follower_player.velocity.x < 0
 
 func update_animations(player1, player2):
 	var player_list = [player1, player2]
@@ -56,7 +74,7 @@ func update_animations(player1, player2):
 	for player in player_list:
 		var anim_name := ""
 		if player.is_on_floor():
-			if abs(player.velocity.x) > 0.1:
+			if abs(player.velocity.x) * 10 > 0.1:
 				anim_name = "Walk"
 			else:
 				anim_name = "Idle"
@@ -73,14 +91,14 @@ func update_animations(player1, player2):
 				if anim_name == "":
 					anim_name = "Jump"
 					
-		if anim_name != player.animation_player.current_animation:
+		if anim_name == player.animation_player.current_animation:
 			if anim_name == "Jump":
 				var speed_factor = min(player.max_jump_time / player.jump_timer, 1.0)
-				speed_mult = 1.5 * speed_factor if player.name == "player2" else 0.2 * speed_factor
+				speed_mult = 2.0 * speed_factor if player.name == "player2" else 0.2 * speed_factor
 			else:
 				speed_mult = 1.0
 		player.play_generic(anim_name, speed_mult)
 
 func update_camera(delta):
 	if is_instance_valid(camera) and is_instance_valid(active_player):
-		camera.global_position = camera.global_position.lerp(active_player.global_position, 30 * delta)
+		camera.global_position = camera.global_position.lerp(active_player.global_position, 75 * delta)

@@ -1,11 +1,12 @@
 class_name BaseScene extends Node
 
 @onready var entrance_markers = $EntranceMarkers
+@onready var camera = $Camera2D
 
 func _ready():
 	for p in sceneManager.players:
-		if p.get_parent():
-			p.get_parent().remove_child(p)
+		if not is_instance_valid(p):
+			continue
 		add_child(p)
 		position_player(p)
 

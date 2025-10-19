@@ -120,7 +120,7 @@ func _physics_process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uaw8k"]
-size = Vector2(207.5, 338)
+size = Vector2(181, 209)
 
 [node name="outside" type="Node2D"]
 script = ExtResource("1_bkgx0")
@@ -155,20 +155,27 @@ position_smoothing_speed = 35.0
 script = SubResource("GDScript_bkgx0")
 map_tilemap = NodePath("../ground")
 
+[node name="player1" parent="." instance=ExtResource("1_nsm10")]
+position = Vector2(-9010.999, 699.00006)
+floor_constant_speed = true
+script = SubResource("GDScript_uaw8k")
+gravity = 2000
+gravity_mult = 3.0
+jump_force = -200
+move_speed = 2650
+max_fall_speed = 2650
+ground_accel = 2.0
+ground_friction = 5.0
+air_accel = 2.7
+air_friction = 0.8
+
 [node name="player2" parent="." instance=ExtResource("6_lt5my")]
 position = Vector2(-9063, 682)
 scale = Vector2(1.8079239, 2.1760583)
 collision_layer = 2
 collision_mask = 3
 script = SubResource("GDScript_uaw8k")
-gravity = 1600
-hold_jump_multiplier = 1.0
-
-[node name="player1" parent="." instance=ExtResource("1_nsm10")]
-position = Vector2(-9010.999, 699.00006)
-floor_constant_speed = true
-script = SubResource("GDScript_uaw8k")
-gravity = 1600
+gravity = 2000
 gravity_mult = 3.0
 move_speed = 2650
 max_fall_speed = 2650
@@ -183,9 +190,11 @@ air_friction = 0.8
 position = Vector2(2111, 76)
 
 [node name="Area2D" parent="." instance=ExtResource("6_bkgx0")]
-position = Vector2(1408, -4480)
+position = Vector2(8992, 344)
+collision_layer = 3
+collision_mask = 3
 connected_scene = "inside"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(7567, 4768)
+position = Vector2(-55, -20)
 shape = SubResource("RectangleShape2D_uaw8k")

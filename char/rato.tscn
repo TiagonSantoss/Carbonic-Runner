@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctjpv0dgf8fsx"]
 
 [ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/pinguim.tscn" id="1_xqycc"]
-[ext_resource type="Texture2D" uid="uid://u4v4w0wrf7nl" path="res://RATO.png" id="2_xqycc"]
+[ext_resource type="Texture2D" uid="uid://g868y27su50i" path="res://char/RATO.png" id="2_xqycc"]
 
 [sub_resource type="Animation" id="Animation_xqycc"]
 resource_name = "Idle"
@@ -67,6 +67,7 @@ collision_layer = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(4.5474735e-13, 0.919093)
+scale = Vector2(0.14630072, 0.12325064)
 texture = ExtResource("2_xqycc")
 offset = Vector2(-129.06155, -57.024033)
 hframes = 9
