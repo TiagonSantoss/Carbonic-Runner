@@ -30,6 +30,10 @@ var right = true
 var control_enabled: bool = true
 var is_follower: bool = false
 
+# --- Thy end is now! Die! ---
+@onready var collision = $CollisionShape2D
+var ded: bool = false
+
 func _ready():
 	print(name, "animations:", animation_player.get_animation_list())
 	animation_player.stop()
@@ -122,3 +126,18 @@ func set_follower(state: bool) -> void:
 		sprite_2D.modulate = Color(0.6, 0.6, 0.6, 1)
 	else:
 		sprite_2D.modulate = Color(1, 1, 1, 1)
+		
+func die():
+	if ded:
+		return
+	ded = true
+	
+	control_enabled = false
+	collision.set_deferred("disabled", true)
+	set_physics_process(true)
+	
+	z_index = 9999
+	sprite_2D.modulate = Color(1, 1, 1, 0.7)
+	velocity = Vector2(randf_range(-100, 100), -300)
+	
+	DamageManager.emit_signal("player_died", self)

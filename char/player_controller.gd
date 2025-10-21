@@ -9,6 +9,10 @@ var right := false
 @export var follow_distance := 200.0
 #@export var follow_speed := 5000.0
 
+func _ready():
+	DamageManager.connect("player_damaged", Callable(self, "_on_player_damaged"))
+	DamageManager.connect("player_died", Callable(self, "_on_player_died"))
+
 func set_players(active: Player, follower: Player) -> void:
 	active_player = active
 	follower_player = follower
@@ -102,3 +106,34 @@ func update_animations(player1, player2):
 func update_camera(delta):
 	if is_instance_valid(camera) and is_instance_valid(active_player):
 		camera.global_position = camera.global_position.lerp(active_player.global_position, 75 * delta)
+		
+
+func _on_player_damaged(_target, _amount):
+	# Optional: show hit effects, camera shake, etc.
+	pass
+
+func _on_player_died(target):
+	# Disable control if the dead player was active
+	if target == active_player:
+		switch_to_alive_player()
+	
+	#TO DO !!!!!!!!!!
+	#if not is_any_player_alive():
+		#game_over()
+
+func switch_to_alive_player():
+	if not follower_player.dead:
+		active_player = follower_player
+		active_player.set_follower(false)
+		follower_player.set_follower(true)
+
+func is_any_player_alive() -> bool:
+	return not active_player.dead or not follower_player.dead
+
+func game_over():
+	#TO DO!!!!
+	#print("Both players dead → Game Over!")
+	#get_tree().paused = true
+	#var game_over_scene = preload("res://ui/GameOver.tscn").instantiate()
+	#get_tree().current_scene.add_child(game_over_scene)
+	pass

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 sceneManager="*res://scenes/scene_manager.gd"
 PlayerManager="*res://char/player_controller.gd"
+DamageManager="*res://char/damage_manager.gd"
 
 [display]
 
