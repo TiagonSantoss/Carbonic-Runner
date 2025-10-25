@@ -104,7 +104,7 @@ func play_generic(anim_name: String, speed: float = 1.0) -> void:
 		else:
 			push_warning("Animation not found for %s: %s" % [self.name, anim_name])
 			
-	sprite_2D.flip_h = velocity.x < 0 if abs(velocity.x) > 0.1 else sprite_2D.flip_h
+	sprite_2D.flip_h = not right #velocity.x < 0 if abs(velocity.x) > 0.1 else sprite_2D.flip_h
 
 #func update_animation() -> void:
 #	if is_on_floor():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dx01v5pepf62n"]
+[gd_scene load_steps=15 format=4 uid="uid://dx01v5pepf62n"]
 
 [ext_resource type="PackedScene" uid="uid://pq5n1dip1g7j" path="res://world/parallax.tscn" id="1_8lkp2"]
 [ext_resource type="Script" uid="uid://cpc5q3ncs1meh" path="res://scenes/outside.gd" id="1_bkgx0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctjpv0dgf8fsx" path="res://char/rato.tscn" id="6_lt5my"]
 [ext_resource type="Texture2D" uid="uid://ceysohmyny3eh" path="res://tileset_predios.png" id="6_uaw8k"]
 [ext_resource type="Texture2D" uid="uid://cwngvt7elxy5p" path="res://TileSetttttATUALIZADO.png" id="7_uaw8k"]
+[ext_resource type="PackedScene" uid="uid://v35arve7u1sq" path="res://ui/timer_ui.tscn" id="8_lt5my"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lt5my"]
 resource_name = "Factory"
@@ -198,3 +199,7 @@ connected_scene = "inside"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-55, -20)
 shape = SubResource("RectangleShape2D_uaw8k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimerUI" parent="CanvasLayer" instance=ExtResource("8_lt5my")]

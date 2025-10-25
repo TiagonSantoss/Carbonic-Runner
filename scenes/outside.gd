@@ -7,6 +7,7 @@ func _ready():
 	super()
 	PlayerManager.set_players(player1,player2)
 	PlayerManager.camera = camera
+	GameTimer.start()
 	
 func _process(delta):
 	PlayerManager.update_camera(delta)

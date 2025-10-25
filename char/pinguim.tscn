@@ -108,7 +108,6 @@ _data = {
 
 [node name="Pinguim" type="CharacterBody2D"]
 scale = Vector2(1.8079237, 2.1760583)
-collision_layer = 0
 script = ExtResource("1_ij6vw")
 hold_jump_multiplier = 2.0
 move_speed = 2500

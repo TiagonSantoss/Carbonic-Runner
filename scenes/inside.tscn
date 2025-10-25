@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://1pyls8qoywgm"]
+[gd_scene load_steps=8 format=3 uid="uid://1pyls8qoywgm"]
 
 [ext_resource type="Script" uid="uid://crkso4vvjs3ia" path="res://scenes/inside.gd" id="1_08jqi"]
 [ext_resource type="PackedScene" uid="uid://das52bkp2essc" path="res://world/parallax2.tscn" id="1_hqivc"]
 [ext_resource type="PackedScene" uid="uid://dco8vw3s4l7o0" path="res://world/inv.tscn" id="3_2b3hl"]
 [ext_resource type="PackedScene" uid="uid://cseudn7o0vday" path="res://scenes/sceneTrigger.tscn" id="4_08jqi"]
+[ext_resource type="PackedScene" uid="uid://v35arve7u1sq" path="res://ui/timer_ui.tscn" id="5_2b3hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2b3hl"]
 size = Vector2(113, 144)
@@ -79,3 +80,7 @@ limit_right = 14276
 limit_bottom = 1077
 position_smoothing_speed = 35.0
 script = SubResource("GDScript_08jqi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimerUI" parent="CanvasLayer" instance=ExtResource("5_2b3hl")]

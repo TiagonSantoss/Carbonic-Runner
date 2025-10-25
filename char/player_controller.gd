@@ -97,15 +97,16 @@ func update_animations(player1, player2):
 					
 		if anim_name == player.animation_player.current_animation:
 			if anim_name == "Jump":
+				print(name, " -> Jump chosen; vel.y:", player.velocity.y, "jump_played:", player.jump_played)
 				var speed_factor = min(player.max_jump_time / player.jump_timer, 1.0)
 				speed_mult = 2.0 * speed_factor if player.name == "player2" else 0.2 * speed_factor
 			else:
 				speed_mult = 1.0
 		player.play_generic(anim_name, speed_mult)
 
-func update_camera(delta):
+func update_camera(_delta):
 	if is_instance_valid(camera) and is_instance_valid(active_player):
-		camera.global_position = camera.global_position.lerp(active_player.global_position, 75 * delta)
+		camera.global_position = active_player.global_position
 		
 
 func _on_player_damaged(_target, _amount):
