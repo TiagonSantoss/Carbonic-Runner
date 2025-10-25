@@ -1,3 +1,15 @@
-yooooooooooooooooooooooo
+# ROADMAP 1 WEEK FINISHING CARBONIC-RUNNER
 
-W GAME fr
+## Hud
+- [x] Timer
+- [ ] Tsunami/Rising water
+- [ ] Scores
+- [ ] Scoreboard
+- [ ] Speed/Velocity
+- [ ] Hud enhancements
+
+## Enemies
+- [ ] Enemies
+- [x] Damage
+- [ ] Projectiles
+- [ ] Boss
