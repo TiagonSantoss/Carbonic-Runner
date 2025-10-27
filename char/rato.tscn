@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctjpv0dgf8fsx"]
+[gd_scene load_steps=9 format=3 uid="uid://ctjpv0dgf8fsx"]
 
 [ext_resource type="PackedScene" uid="uid://bc64m6c6670qt" path="res://char/pinguim.tscn" id="1_xqycc"]
 [ext_resource type="Texture2D" uid="uid://g868y27su50i" path="res://char/RATO.png" id="2_xqycc"]
@@ -55,15 +55,47 @@ tracks/0/keys = {
 "values": [48, 49, 50, 51, 52]
 }
 
+[sub_resource type="Animation" id="Animation_x74gk"]
+resource_name = "Fall"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_67cbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x74gk"]
 _data = {
+&"Fall": SubResource("Animation_x74gk"),
 &"Idle": SubResource("Animation_xqycc"),
 &"Jump": SubResource("Animation_3inll"),
+&"RESET": SubResource("Animation_67cbq"),
 &"Walk": SubResource("Animation_6nno7")
 }
 
 [node name="rato" instance=ExtResource("1_xqycc")]
-collision_layer = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(4.5474735e-13, 0.919093)
@@ -72,6 +104,7 @@ texture = ExtResource("2_xqycc")
 offset = Vector2(-129.06155, -57.024033)
 hframes = 9
 vframes = 9
+frame = 2
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.435, -0.545)

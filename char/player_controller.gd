@@ -3,7 +3,7 @@ class_name PlayerController extends Node
 var active_player: Player
 var follower_player: Player
 var camera: Camera2D
-var right := false
+#var right := false
 
 @export var max_distance := 700.0
 @export var follow_distance := 200.0
@@ -24,6 +24,9 @@ func switch_players():
 	follower_player = temp
 	active_player.set_follower(false)
 	follower_player.set_follower(true)
+	if active_player.dead:
+		active_player.dead = false
+		print("now you aint dead")
 
 func update_follower(delta: float):
 	if not is_instance_valid(active_player) or not is_instance_valid(follower_player):
@@ -51,15 +54,19 @@ func update_follower(delta: float):
 	
 	var flip_offset := 36.0
 
-	if abs(follower_player.velocity.x) > 0.1:
-		var is_flipped = follower_player.velocity.x < 0
+	var is_flipped = not active_player.right
+	
+	if follower_player:
 		follower_player.sprite_2D.flip_h = is_flipped
-
-		# Adjust visual offset based on flip
 		if is_flipped:
 			follower_player.sprite_2D.position.x = flip_offset
 		else:
 			follower_player.sprite_2D.position.x = 0
+	if active_player.name == "player2":  # or use a flag like is_rat
+		if is_flipped:
+			active_player.sprite_2D.position.x = flip_offset
+		else:
+			active_player.sprite_2D.position.x = 0
 
 	#if follower_player:
 	#	if abs(follower_player.velocity.x) > 0.1:
@@ -102,6 +109,7 @@ func update_animations(player1, player2):
 				speed_mult = 2.0 * speed_factor if player.name == "player2" else 0.2 * speed_factor
 			else:
 				speed_mult = 1.0
+		player.sprite_2D.flip_h = not player.right
 		player.play_generic(anim_name, speed_mult)
 
 func update_camera(_delta):
@@ -114,27 +122,27 @@ func _on_player_damaged(_target, _amount):
 	pass
 
 func _on_player_died(target):
-	# Disable control if the dead player was active
 	if target == active_player:
-		switch_to_alive_player()
-	
-	#TO DO !!!!!!!!!!
-	#if not is_any_player_alive():
-		#game_over()
+		if not follower_player.dead:
+			switch_players() # only switch if there’s a living follower
+	# Check game over regardless
+	if not is_any_player_alive():
+		game_over()
 
-func switch_to_alive_player():
-	if not follower_player.dead:
-		active_player = follower_player
-		active_player.set_follower(false)
-		follower_player.set_follower(true)
+#func switch_to_alive_player():
+#	if not follower_player.dead:
+#		switch_players()
+#		active_player = follower_player
+#		active_player.set_follower(false)
+#		follower_player.set_follower(true)
 
 func is_any_player_alive() -> bool:
 	return not active_player.dead or not follower_player.dead
 
 func game_over():
 	#TO DO!!!!
-	#print("Both players dead → Game Over!")
-	#get_tree().paused = true
+	print("Both players dead → Game Over!")
+	get_tree().paused = true
 	#var game_over_scene = preload("res://ui/GameOver.tscn").instantiate()
 	#get_tree().current_scene.add_child(game_over_scene)
 	pass

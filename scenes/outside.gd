@@ -8,6 +8,7 @@ func _ready():
 	PlayerManager.set_players(player1,player2)
 	PlayerManager.camera = camera
 	GameTimer.start()
+	MusicManager.play_music(preload("res://world/sound/level.wav"))
 	
 func _process(delta):
 	PlayerManager.update_camera(delta)

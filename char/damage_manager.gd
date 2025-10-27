@@ -4,7 +4,6 @@ class_name Damage_Manager extends Node
 signal player_damaged(target, amount)
 signal player_died(target)
 
-# Apply generic damage + optional knockback
 func apply_damage(target: Node, amount: float, source: Node = null, knockback: Vector2 = Vector2.ZERO):
 	if not target or not target.has_method("apply_damage"):
 		push_warning("Invalid target: %s" % target)
@@ -12,6 +11,7 @@ func apply_damage(target: Node, amount: float, source: Node = null, knockback: V
 		
 	target.apply_damage(amount, source)
 	emit_signal("player_damaged", target, amount)
+	print("%s took %.1f damage" % [name, amount])
 	
 	# Apply knockback if any
 	if knockback != Vector2.ZERO and target is Player and not target.dead:
