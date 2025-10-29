@@ -17,14 +17,14 @@ func play_music(new_stream: AudioStream):
 	# if there’s no music playing yet
 	if current_player.stream == null:
 		current_player.stream = new_stream
-		current_player.volume_db = -10
+		current_player.volume_db = -16
 		current_player.play()
 		_fade_in(current_player)
 		return
 	
 	# otherwise, crossfade to the new track
 	next_player.stream = new_stream
-	next_player.volume_db = -10
+	next_player.volume_db = -16
 	next_player.play()
 	
 	# fade out the old one and fade in the new one
@@ -40,7 +40,7 @@ func play_music(new_stream: AudioStream):
 	
 func _fade_in(player: AudioStreamPlayer) -> void:
 	create_tween().tween_property(
-		player, "volume_db", -10, fade_speed
+		player, "volume_db", -16, fade_speed
 	)
 
 func _fade_out(player: AudioStreamPlayer) -> void:

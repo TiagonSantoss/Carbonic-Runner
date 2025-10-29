@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc64m6c6670qt"]
+[gd_scene load_steps=12 format=3 uid="uid://bc64m6c6670qt"]
 
 [ext_resource type="Script" uid="uid://7p6l1bhhbfti" path="res://char/physics.gd" id="1_ij6vw"]
+[ext_resource type="Material" uid="uid://7ktr5jrhhy6t" path="res://char/base.tres" id="2_3nq0x"]
 [ext_resource type="Texture2D" uid="uid://eb3ws1mx6i8c" path="res://char/penguimsprites.png" id="2_jrrh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44cfe"]
@@ -114,6 +115,7 @@ move_speed = 2500
 ground_accel = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_3nq0x")
 position = Vector2(-0.55312085, -14.475719)
 scale = Vector2(0.15, 0.137)
 texture = ExtResource("2_jrrh6")

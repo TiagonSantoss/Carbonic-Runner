@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bk0t88noaa4x6"]
+
+[ext_resource type="Shader" uid="uid://w8b83xmbmyl2" path="res://char/flash.gdshader" id="1_hbwnv"]
+
+[resource]
+shader = ExtResource("1_hbwnv")
+shader_parameter/flash_strength = 0.0

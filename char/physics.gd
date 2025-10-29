@@ -33,7 +33,13 @@ var is_follower: bool = false
 # --- Thy end is now! Die! ---
 @onready var collision = $CollisionShape2D
 var dead: bool = false
-var health = 1
+var invincible := false
+var health = 2
+
+# --- Wall Jumping ---
+var on_wall: bool = false
+var wall_dir: int = 0  # -1 = left wall, 1 = right wall
+var wall_jump_active := false
 
 func _ready():
 	print(name, "animations:", animation_player.get_animation_list())
@@ -52,6 +58,13 @@ func _physics_process(delta: float) -> void:
 	handle_movement(input_dir,delta)
 	handle_jump(delta)
 	move_and_slide()
+	on_wall = is_on_wall()
+	if on_wall:
+		var wall_normal = get_wall_normal()
+		wall_dir = int(sign(wall_normal.x))
+	else:
+		wall_dir = 0
+	print(wall_dir)
 #	update_animation()
 
 func handle_movement(input_dir: float, delta: float) -> void:
@@ -80,14 +93,37 @@ func apply_gravity(delta: float) -> void:
 		jump_played = false
 			
 func handle_jump(delta: float):
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 0.0)and not jumping:
-		velocity.y = jump_force
-		jumping = true
-		jump_timer = 0.0
-		coyote_timer = 0.0
-		
-	
-	if Input.is_action_pressed("jump") and jumping and jump_timer < max_jump_time:
+	# --- JUMP INPUT ---
+	var jump_pressed := Input.is_action_just_pressed("jump")
+	var jump_held := Input.is_action_pressed("jump")
+
+	# --- WALL SLIDE ---
+	if on_wall and not is_on_floor() and velocity.y > 0:
+		var wall_slide_speed := 150.0  # tweak
+		velocity.y = lerp(velocity.y, wall_slide_speed, delta * 10.0)
+
+	# --- WALL HOLD PUSH ---
+	#if on_wall and jump_held and not is_on_floor():
+	#	var wall_push := 300.0  # horizontal push speed
+	#	velocity.x = wall_push * wall_dir  # move away from wall
+
+	# --- JUMPING ---
+	if jump_pressed:
+		if is_on_floor() or coyote_timer > 0.0:
+			velocity.y = jump_force
+			jumping = true
+			jump_timer = 0.0
+			coyote_timer = 0.0
+		elif on_wall:
+			# Wall jump
+			velocity.y = jump_force
+			velocity.x = move_speed * 0.5 * wall_dir  # initial push away from wall
+			jumping = true
+			jump_timer = 0.0
+			coyote_timer = 0.0
+
+	# --- VARIABLE HEIGHT JUMP ---
+	if jumping and jump_held and jump_timer < max_jump_time:
 		var hold_factor = 1.0 - (jump_timer / max_jump_time)
 		var adjusted_gravity = -gravity * (hold_jump_multiplier * hold_factor)
 		velocity.y += adjusted_gravity * delta
@@ -123,11 +159,57 @@ func play_generic(anim_name: String, speed: float = 1.0) -> void:
 func set_follower(state: bool) -> void:
 	is_follower = state
 	control_enabled = not state
+	var mat = sprite_2D.material as ShaderMaterial
 	if is_follower:
-		sprite_2D.modulate = Color(0.6, 0.6, 0.6, 1)
+		invincible = true
+		mat.set_shader_parameter("follower_gray", 1.0)   # should turn gray
 	else:
-		sprite_2D.modulate = Color(1, 1, 1, 1)
-		
+		invincible = false
+		mat.set_shader_parameter("follower_gray", 0.0)
+	mat.set_shader_parameter("flash_strength", 0.0)
+
+# --- DAMAGE SYSTEM ---
+@warning_ignore("unused_parameter")
+func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO) -> void:
+	if dead or invincible:
+		return
+	
+	health -= amount
+	apply_iframes(1.0)
+	print("%s took %s damage" % [name, amount])
+	
+	velocity += knockback  # optional knockback
+	
+	if health <= 0:
+		die()
+
+func apply_iframes(duration: float) -> void:
+	#get_tree().paused = true
+	#if is_follower: return
+	invincible = true
+	var elapsed := 0.0
+	var flash_interval := 0.1
+	#t.wait_time = flash_interval / 2
+	#t.one_shot = true
+	#t.autostart = true
+	var mat = sprite_2D.material as ShaderMaterial
+	while elapsed < duration:
+		mat.set_shader_parameter("flash_strength", 1.0)
+		await get_tree().create_timer(flash_interval / 2).timeout
+		mat.set_shader_parameter("flash_strength", 0.0)
+		await get_tree().create_timer(flash_interval / 2).timeout
+		elapsed += flash_interval
+	invincible = is_follower
+	sprite_2D.material.set_shader_parameter("flash_strength", 0.0)
+	if is_follower:
+		mat.set_shader_parameter("follower_gray", 1.0)
+	else:
+		mat.set_shader_parameter("follower_gray", 0.0)
+
+	#get_tree().paused = false
+	#await t.timeout
+	#t.queue_free()
+
 func die():
 	if dead:
 		return
@@ -139,19 +221,6 @@ func die():
 	
 	z_index = 100
 	sprite_2D.modulate = Color(1, 1, 1, 0.7)
-	velocity = Vector2(randf_range(-100, 100), -300)
+	velocity = Vector2(randf_range(-100, 100), -800)
 	
 	DamageManager.emit_signal("player_died", self)
-@warning_ignore("unused_parameter")
-func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO) -> void:
-	if dead:
-		return
-	
-	health -= amount
-	print("%s took %s damage" % [name, amount])
-	
-	# Optional knockback
-	velocity += knockback
-	
-	if health <= 0:
-		die()
