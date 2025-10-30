@@ -5,3 +5,5 @@
 [resource]
 shader = ExtResource("1_hbwnv")
 shader_parameter/flash_strength = 0.0
+shader_parameter/follower_gray = 0.0
+shader_parameter/flash_color = Vector3(1, 1, 1)

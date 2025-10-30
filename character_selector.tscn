@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0spfitmjeuvu"]
+
+[ext_resource type="Script" uid="uid://dhaiha2ov7ik5" path="res://character_selector.gd" id="1_bvs7a"]
+[ext_resource type="Texture2D" uid="uid://d05q01gywnc6u" path="res://ui/menu/bg.webp" id="1_esgf3"]
+[ext_resource type="Texture2D" uid="uid://cgvtl7awom7yu" path="res://ui/menu/PEN.png" id="2_bvs7a"]
+[ext_resource type="Texture2D" uid="uid://d27puvc5kfnbg" path="res://ui/menu/RAT.png" id="3_dxpqy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvs7a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1913.0
+offset_bottom = 1082.0
+texture = ExtResource("1_esgf3")
+
+[node name="PENPENPENPEN" type="Button" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 32.0
+offset_right = 761.0
+offset_bottom = 1019.0
+icon = ExtResource("2_bvs7a")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RATRATRATRAT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1190.0
+offset_top = 28.0
+offset_right = 1709.0
+offset_bottom = 1017.0
+icon = ExtResource("3_dxpqy")
+flat = true
+icon_alignment = 1
+expand_icon = true

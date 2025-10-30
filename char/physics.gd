@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		wall_dir = int(sign(wall_normal.x))
 	else:
 		wall_dir = 0
-	print(wall_dir)
+	#print(wall_dir)
 #	update_animation()
 
 func handle_movement(input_dir: float, delta: float) -> void:
@@ -93,11 +93,9 @@ func apply_gravity(delta: float) -> void:
 		jump_played = false
 			
 func handle_jump(delta: float):
-	# --- JUMP INPUT ---
 	var jump_pressed := Input.is_action_just_pressed("jump")
 	var jump_held := Input.is_action_pressed("jump")
 
-	# --- WALL SLIDE ---
 	if on_wall and not is_on_floor() and velocity.y > 0:
 		var wall_slide_speed := 150.0  # tweak
 		velocity.y = lerp(velocity.y, wall_slide_speed, delta * 10.0)
@@ -107,7 +105,6 @@ func handle_jump(delta: float):
 	#	var wall_push := 300.0  # horizontal push speed
 	#	velocity.x = wall_push * wall_dir  # move away from wall
 
-	# --- JUMPING ---
 	if jump_pressed:
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = jump_force
@@ -168,7 +165,6 @@ func set_follower(state: bool) -> void:
 		mat.set_shader_parameter("follower_gray", 0.0)
 	mat.set_shader_parameter("flash_strength", 0.0)
 
-# --- DAMAGE SYSTEM ---
 @warning_ignore("unused_parameter")
 func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO) -> void:
 	if dead or invincible:
@@ -176,7 +172,7 @@ func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO)
 	
 	health -= amount
 	apply_iframes(1.0)
-	print("%s took %s damage" % [name, amount])
+	#print("%s took %s damage" % [name, amount])
 	
 	velocity += knockback  # optional knockback
 	

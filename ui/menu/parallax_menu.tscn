@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2yna8eniet0d"]
+
+[ext_resource type="Texture2D" uid="uid://b45rdst5haw8t" path="res://ui/menu/main.png" id="1_sumes"]
+[ext_resource type="Texture2D" uid="uid://2q0nxwalewru" path="res://world/para_out/fundofora5nuvem.png" id="2_1qvy0"]
+[ext_resource type="Texture2D" uid="uid://i28bf5phh01m" path="res://world/para_out/fundofora6nuvem.png" id="3_2dyn6"]
+[ext_resource type="Texture2D" uid="uid://i6pm1tfeywbc" path="res://world/para_out/fundofora7nuvem.png" id="4_4fa3c"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-5706, 536)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(100, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background"]
+texture = ExtResource("1_sumes")
+
+[node name="main" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(-5706, 536)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(150, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="main"]
+position = Vector2(57, 20)
+texture = ExtResource("1_sumes")
+
+[node name="FarClouds" type="Parallax2D" parent="."]
+visible = false
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(11, 532)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(300, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="FarClouds"]
+texture = ExtResource("2_1qvy0")
+
+[node name="MidClouds" type="Parallax2D" parent="."]
+visible = false
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(11, 532)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-400, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="MidClouds"]
+texture = ExtResource("3_2dyn6")
+
+[node name="nearClouds" type="Parallax2D" parent="."]
+visible = false
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(11, 532)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(500, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="nearClouds"]
+texture = ExtResource("4_4fa3c")

@@ -26,17 +26,17 @@ func switch_players():
 	follower_player = temp
 	active_player.set_follower(false)
 	follower_player.set_follower(true)
-	active_player.dead = false
+	#active_player.dead = false
+	if active_player.dead:
+		active_player.dead = false
 	active_player.apply_iframes(1.5)
-	#if active_player.dead:
-	#	active_player.dead = false
 
 func update_follower(delta: float):
 	if not is_instance_valid(active_player) or not is_instance_valid(follower_player):
 		return
 	var dir = active_player.global_position - follower_player.global_position
 	var dist = dir.length()
-	#follower_player.global_position = lerp(follower_player.global_position, active_player.global_position, 0.2)
+	#follower_player.global_position = lerp(follower_player.global_position, active_player.global_position + Vector2(-10, -20), 0.2)
 	#follower_player.t.process_mode = Timer.ProcessMode.PROCESS_MODE_ALWAYS
 	if not follower_player.dead:
 		if dist > max_distance:
@@ -44,19 +44,28 @@ func update_follower(delta: float):
 			dir = dir.normalized()
 			var catch_up_speed = follower_player.move_speed * 1.5  # 3× normal speed
 			var target_vel_x = dir.x * catch_up_speed
+			var target_vel_y = dir.y * catch_up_speed
 			follower_player.velocity.x = lerp(
 				follower_player.velocity.x,
 				target_vel_x,
 				follower_player.ground_accel * 60 * delta
+			)
+			follower_player.velocity.x = lerp(
+				follower_player.velocity.y,
+				target_vel_y,
+				follower_player.air_accel * 60 * delta
 			)
 		else:
 			follower_player.collision.set_deferred("disabled", false)
 			if dist > follow_distance:
 				dir = dir.normalized()
 				var target_velocity_x = dir.x * active_player.move_speed * 2.0
+				var target_velocity_y = dir.y * active_player.move_speed * 2.0
 				follower_player.velocity.x = lerp(follower_player.velocity.x, target_velocity_x, follower_player.ground_accel * 3.0 * delta)
+				follower_player.velocity.y = lerp(follower_player.velocity.y, target_velocity_y, follower_player.air_accel * 3.0 * delta)
 			else:
 				follower_player.velocity.x = lerp(follower_player.velocity.x, 0.0, follower_player.ground_friction * delta)
+				follower_player.velocity.y = lerp(follower_player.velocity.y, 0.0, follower_player.air_friction * delta)
 	var flip_offset := 36.0
 	var is_flipped = not active_player.right
 	
@@ -148,7 +157,7 @@ func game_over():
 	#TO DO!!!!
 	print("Both players dead → Game Over!")
 	#await 3
-	#get_tree().paused = true
+	get_tree().paused = true
 	#var game_over_scene = preload("res://ui/GameOver.tscn").instantiate()
 	#get_tree().current_scene.add_child(game_over_scene)
 	pass

@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://b0pfxw2lg84tf"]
+[gd_scene load_steps=7 format=3 uid="uid://b0pfxw2lg84tf"]
+
+[ext_resource type="Script" uid="uid://cbtnmwk3c3xoe" path="res://scenes/menu.gd" id="1_4ytvr"]
+[ext_resource type="PackedScene" uid="uid://b2yna8eniet0d" path="res://ui/menu/parallax_menu.tscn" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://dwwlwo00uicni" path="res://ui/menu/clouds.png" id="2_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://bdx7ku4oijfuf" path="res://ui/menu/jogar_un.png" id="4_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://cnce2jyomy6ad" path="res://ui/menu/building.png" id="4_g3eks"]
+[ext_resource type="PackedScene" uid="uid://b0spfitmjeuvu" path="res://character_selector.tscn" id="6_g3eks"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +14,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4ytvr")
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="clouds_background" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_mhnvy")
+
+[node name="parallax_menu" parent="Menu" instance=ExtResource("1_yqeox")]
+
+[node name="building" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_g3eks")
+
+[node name="Button" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 459.0
+offset_right = 1129.0
+offset_bottom = 626.0
+action_mode = 0
+icon = ExtResource("4_4ytvr")
+flat = true
+icon_alignment = 1
+
+[node name="CharacterSelect" parent="." instance=ExtResource("6_g3eks")]
+visible = false
+layout_mode = 1
