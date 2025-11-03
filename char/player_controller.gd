@@ -66,20 +66,34 @@ func update_follower(delta: float):
 			else:
 				follower_player.velocity.x = lerp(follower_player.velocity.x, 0.0, follower_player.ground_friction * delta)
 				follower_player.velocity.y = lerp(follower_player.velocity.y, 0.0, follower_player.air_friction * delta)
-	var flip_offset := 36.0
+	var flip_offset := 28
 	var is_flipped = not active_player.right
 	
 	if follower_player:
-		follower_player.sprite_2D.flip_h = is_flipped
-		if is_flipped:
-			follower_player.sprite_2D.position.x = flip_offset
-		else:
-			follower_player.sprite_2D.position.x = 0
+		if follower_player.sprite1:
+			follower_player.sprite1.flip_h = is_flipped
+			if is_flipped:
+				follower_player.sprite1.position.x = flip_offset
+			else:
+				follower_player.sprite1.position.x = 0
+		if follower_player.animation_player.current_animation == "Slide":
+			follower_player.sprite1.flip_h = is_flipped
+			if is_flipped:
+				follower_player.sprite1.position.x = flip_offset - 26
+			else:
+				follower_player.sprite1.position.x = flip_offset
 	if active_player.name == "player2":
-		if is_flipped:
-			active_player.sprite_2D.position.x = flip_offset
-		else:
-			active_player.sprite_2D.position.x = 0
+		if active_player.sprite1:
+			if is_flipped:
+				active_player.sprite1.position.x = flip_offset
+			else:
+				active_player.sprite1.position.x = 0
+		if active_player.animation_player.current_animation == "Slide":
+			active_player.sprite1.flip_h = is_flipped
+			if is_flipped:
+				active_player.sprite1.position.x = flip_offset - 26
+			else:
+				active_player.sprite1.position.x = flip_offset
 
 	#if follower_player:
 	#	if abs(follower_player.velocity.x) > 0.1:
@@ -100,14 +114,28 @@ func update_animations(player1, player2):
 		if player.is_on_floor():
 			if abs(player.velocity.x) * 10 > 0.1:
 				anim_name = "Walk"
+				if player.sprite1:
+					player.sprite1.visible = true
+				if player.name == "player2":
+					player.sprite_2D.visible = false
 			else:
 				anim_name = "Idle"
+				if player.sprite1:
+					player.sprite1.visible = false
+				if player.name == "player2":
+					player.sprite_2D.visible = true
 			player.jumping = false
+		elif player.on_wall:
+				anim_name = "Slide"
 		else:
 			if player.velocity.y < 0:
 				if not player.jump_played:
 					anim_name = "Jump"
 					player.jump_played = true
+					if player.sprite1:
+						player.sprite1.visible = true
+					if player.name == "player2":
+						player.sprite_2D.visible = false
 			elif player.velocity.y > 0:
 				anim_name = "Fall"
 			else:
@@ -117,12 +145,14 @@ func update_animations(player1, player2):
 					
 		if anim_name == player.animation_player.current_animation:
 			if anim_name == "Jump":
-				print(name, " -> Jump chosen; vel.y:", player.velocity.y, "jump_played:", player.jump_played)
+				#print(name, " -> Jump chosen; vel.y:", player.velocity.y, "jump_played:", player.jump_played)
 				var speed_factor = min(player.max_jump_time / player.jump_timer, 1.0)
 				speed_mult = 2.0 * speed_factor if player.name == "player2" else 0.2 * speed_factor
 			else:
 				speed_mult = 1.0
 		player.sprite_2D.flip_h = not player.right
+		if player.sprite1:
+			player.sprite1.flip_h = not player.right
 		player.play_generic(anim_name, speed_mult)
 
 func update_camera(_delta):

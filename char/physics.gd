@@ -22,6 +22,7 @@ var coyote_timer = 0.0
 # --- ANIMATION ---
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2D: Sprite2D = $Sprite2D
+@onready var sprite1 = $Sprite1
 var animation_to_play = "Idle"
 var jump_played = false
 var right = true
