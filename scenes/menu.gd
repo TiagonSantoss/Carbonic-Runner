@@ -7,7 +7,6 @@ func _ready() -> void:
 	character_select.visible = false
 	MusicManager.play_music(preload("res://world/sound/Menu.wav"))
 
-	# Make PLAY the first focus and highlight it
 	play_button.grab_focus()
 	_highlight_button(play_button, true)
 

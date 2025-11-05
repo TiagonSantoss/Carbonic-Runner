@@ -21,7 +21,7 @@ func apply_damage(target: Node, amount: float, source: Node = null, knockback: V
 		emit_signal("player_died", target)
 
 func instant_kill(target: Node, source: Node = null):
-	apply_damage(target, 9999, source)
+	apply_damage(target, 2, source)
 
 func _apply_knockback(player: Player, source: Node, knockback: Vector2):
 	# Determine direction away from source

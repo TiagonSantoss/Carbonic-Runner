@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://us0jurlhvmoa"
-path="res://.godot/imported/fundodentro1.png-b489c08ec49f06c17082b4d130b36766.ctex"
+uid="uid://cdr3onu5mqugr"
+path="res://.godot/imported/menu.png-783bc437874ed8b2545418784382b002.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/para_in/fundodentro1.png"
-dest_files=["res://.godot/imported/fundodentro1.png-b489c08ec49f06c17082b4d130b36766.ctex"]
+source_file="res://ui/menu/menu.png"
+dest_files=["res://.godot/imported/menu.png-783bc437874ed8b2545418784382b002.ctex"]
 
 [params]
 

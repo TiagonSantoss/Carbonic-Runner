@@ -20,24 +20,27 @@ position = Vector2(13, -1169)
 texture = ExtResource("1_j8tfo")
 
 [node name="FarBuilding" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.1, 1)
-repeat_size = Vector2(1920, 0)
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1920, 10)
+autoscroll = Vector2(100, 0)
 repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="FarBuilding"]
 texture = ExtResource("2_7t1u3")
 
 [node name="MidBuildings" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 1)
-repeat_size = Vector2(1920, 0)
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1920, 10)
+autoscroll = Vector2(50, 0)
 repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="MidBuildings"]
 texture = ExtResource("3_hhieh")
 
 [node name="NearBuildings" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.35, 1)
-repeat_size = Vector2(1920, 0)
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1920, 10)
+autoscroll = Vector2(25, 0)
 repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="NearBuildings"]

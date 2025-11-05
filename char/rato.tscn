@@ -149,8 +149,8 @@ _data = {
 
 [node name="Sprite1" type="Sprite2D" parent="." index="0"]
 material = ExtResource("2_3inll")
-position = Vector2(0.5398433, 2.898858)
-scale = Vector2(0.117754206, 0.1069866)
+position = Vector2(-1.6497021, -2.5455623)
+scale = Vector2(0.13936049, 0.18888554)
 texture = ExtResource("4_x74gk")
 offset = Vector2(-129.06155, -57.024033)
 hframes = 9
@@ -159,8 +159,8 @@ frame = 11
 
 [node name="Sprite2D" parent="." index="1"]
 material = ExtResource("2_3inll")
-position = Vector2(-1.453984, 2.5317006)
-scale = Vector2(0.16715187, 0.14083846)
+position = Vector2(-1.1062416, -2.7572787)
+scale = Vector2(0.20058222, 0.24688765)
 texture = ExtResource("3_6nno7")
 offset = Vector2(7.0440335, -34.652714)
 hframes = 7

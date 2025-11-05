@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://born2i425vd51"]
 
-[ext_resource type="Texture2D" uid="uid://3wv6oi4dm5k2" path="res://world/para_in/fundodentro1.png" id="1_md8ik"]
+[ext_resource type="Texture2D" uid="uid://us0jurlhvmoa" path="res://world/para_in/fundodentro1.png" id="1_md8ik"]
 
 [node name="Node2D" type="Node2D"]
 

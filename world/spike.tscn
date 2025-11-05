@@ -4,17 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://ilptvkwj4ugd" path="res://world/spike.png" id="2_kn3n1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amyvc"]
-size = Vector2(88, 70)
+size = Vector2(14, 71)
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 3
 script = ExtResource("1_amyvc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, -27)
+scale = Vector2(0.2995283, 0.4023569)
 texture = ExtResource("2_kn3n1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -12)
+position = Vector2(-1, -11.5)
 shape = SubResource("RectangleShape2D_amyvc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

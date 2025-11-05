@@ -3,7 +3,10 @@ class_name PlayerController extends Node
 var active_player: Player
 var follower_player: Player
 var camera: Camera2D
-#var right := false
+var anim_name := ""
+signal health_changed
+var rat
+var pen
 
 @export var max_distance := 700.0
 @export var follow_distance := 200.0
@@ -14,6 +17,11 @@ func _ready():
 	#physics_process_mode = Node.PROCESS_MODE_ALWAYS  # ensures _physics_process runs even if tree paused
 	DamageManager.connect("player_damaged", Callable(self, "_on_player_damaged"))
 	DamageManager.connect("player_died", Callable(self, "_on_player_died"))
+	rat = preload("res://char/rato.tscn").instantiate()
+	pen = preload("res://char/pinguim.tscn").instantiate()
+	active_player = pen
+	follower_player = rat
+
 
 func set_players(active: Player, follower: Player) -> void:
 	active_player = active
@@ -110,7 +118,6 @@ func update_animations(player1, player2):
 	var player_list = [player1, player2]
 	var speed_mult = 1.0
 	for player in player_list:
-		var anim_name := ""
 		if player.is_on_floor():
 			if abs(player.velocity.x) * 10 > 0.1:
 				anim_name = "Walk"
@@ -153,6 +160,9 @@ func update_animations(player1, player2):
 		player.sprite_2D.flip_h = not player.right
 		if player.sprite1:
 			player.sprite1.flip_h = not player.right
+		#if player.invincible:
+		#	anim_name = "Damage"
+		
 		player.play_generic(anim_name, speed_mult)
 
 func update_camera(_delta):
@@ -161,7 +171,7 @@ func update_camera(_delta):
 		
 
 func _on_player_damaged(_target, _amount):
-	# Optional: show hit effects, camera shake, etc.
+	#anim_name = "Damage"
 	pass
 
 func _on_player_died(target):

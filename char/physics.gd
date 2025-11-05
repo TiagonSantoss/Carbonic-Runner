@@ -35,7 +35,7 @@ var is_follower: bool = false
 @onready var collision = $CollisionShape2D
 var dead: bool = false
 var invincible := false
-var health = 2
+@export var health = 2
 
 # --- Wall Jumping ---
 var on_wall: bool = false
@@ -172,6 +172,7 @@ func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO)
 		return
 	
 	health -= amount
+	PlayerManager.health_changed.emit()
 	apply_iframes(1.0)
 	#print("%s took %s damage" % [name, amount])
 	
