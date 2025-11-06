@@ -5,13 +5,13 @@
 ## Hud
 - [x] Timer
 - [ ] Tsunami/Rising water
-- [ ] Scores
+- [x] Scores
 - [ ] Scoreboard
-- [ ] Speed/Velocity
-- [ ] Hud enhancements
+- [x] Speed/Velocity
+- [x] Hud enhancements
 
 ## Enemies
-- [ ] Enemies
+- [x] Enemies
 - [x] Damage
 - [ ] Projectiles
 - [ ] Boss
