@@ -86,7 +86,7 @@ func apply_gravity(delta: float) -> void:
 		else:
 			velocity.y += gravity * delta
 		#velocity.y = min(velocity.y, max_fall_speed)
-		#coyote_timer -= delta
+		coyote_timer -= delta
 	else:
 		if velocity.y > 0:
 			velocity.y = 0
@@ -107,7 +107,7 @@ func handle_jump(delta: float):
 	#	velocity.x = wall_push * wall_dir  # move away from wall
 
 	if jump_pressed:
-		if is_on_floor() or coyote_timer > 0.0:
+		if is_on_floor() or coyote_timer > 0.5:
 			velocity.y = jump_force
 			jumping = true
 			jump_timer = 0.0
@@ -157,6 +157,8 @@ func play_generic(anim_name: String, speed: float = 1.0) -> void:
 func set_follower(state: bool) -> void:
 	is_follower = state
 	control_enabled = not state
+	print("Sprite2D:", sprite_2D)
+
 	var mat = sprite_2D.material as ShaderMaterial
 	if is_follower:
 		invincible = true
@@ -172,7 +174,7 @@ func apply_damage(amount: float, source: Node = null, knockback := Vector2.ZERO)
 		return
 	
 	health -= amount
-	PlayerManager.health_changed.emit()
+	PlayerManager._health_changed.emit()
 	apply_iframes(1.0)
 	#print("%s took %s damage" % [name, amount])
 	
@@ -222,3 +224,4 @@ func die():
 	velocity = Vector2(randf_range(-100, 100), -800)
 	
 	DamageManager.emit_signal("player_died", self)
+	

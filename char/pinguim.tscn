@@ -107,12 +107,21 @@ _data = {
 &"dive": SubResource("Animation_0ksn7")
 }
 
-[node name="Pinguim" type="CharacterBody2D"]
+[node name="player1" type="CharacterBody2D"]
 scale = Vector2(1.8079237, 2.1760583)
 script = ExtResource("1_ij6vw")
-hold_jump_multiplier = 2.0
-move_speed = 2500
-ground_accel = 0.8
+gravity = 2000
+gravity_mult = 3.0
+jump_force = -200
+max_jump_time = 0.3
+hold_jump_multiplier = 4.0
+move_speed = 2650
+max_fall_speed = 2650
+ground_accel = 2.0
+ground_friction = 5.0
+air_accel = 2.7
+air_friction = 0.8
+coyote_time = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_3nq0x")

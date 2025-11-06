@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://by5ed8303msvb"]
+
+[ext_resource type="Script" uid="uid://65p6dehsru4m" path="res://world/peidante.gd" id="1_38ioo"]
+[ext_resource type="Texture2D" uid="uid://ns0t2m2l7nof" path="res://world/peido_sheet.png" id="2_oqxbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncv2k"]
+size = Vector2(8.476536, 31.118683)
+
+[sub_resource type="Animation" id="Animation_2jqng"]
+resource_name = "peido"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.3, 0.35, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 0, 5, 6, 0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_38ioo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqrge"]
+_data = {
+&"RESET": SubResource("Animation_38ioo"),
+&"peido": SubResource("Animation_2jqng")
+}
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(0.47189096, 0.4820256)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_38ioo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.7683716e-07, -12.447468)
+scale = Vector2(0.22908753, 0.30967486)
+texture = ExtResource("2_oqxbn")
+hframes = 4
+vframes = 2
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.2631021e-07, -21.783075)
+scale = Vector2(1, 0.9999998)
+shape = SubResource("RectangleShape2D_ncv2k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nqrge")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

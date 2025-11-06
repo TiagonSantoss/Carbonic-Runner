@@ -4,24 +4,7 @@
 [ext_resource type="Script" uid="uid://c53ufm03m2imq" path="res://world/splash.gd" id="1_nw4r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncv2k"]
-size = Vector2(71, 77)
-
-[sub_resource type="Animation" id="Animation_nw4r2"]
-resource_name = "splash"
-length = 1.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.049999997, 0.15, 0.25, 0.35, 0.45000002, 0.55, 0.6, 0.65000004, 0.75, 0.85, 0.9499999, 1.0500001),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 5, 4, 3, 2, 1, 0, 2, 3, 4, 5, 6]
-}
+size = Vector2(8.476536, 31.118683)
 
 [sub_resource type="Animation" id="Animation_nla0v"]
 length = 0.001
@@ -38,6 +21,23 @@ tracks/0/keys = {
 "values": [7]
 }
 
+[sub_resource type="Animation" id="Animation_nw4r2"]
+resource_name = "splash"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.049999997, 0.15, 0.25, 0.35, 0.45000002, 0.55, 0.6, 0.65000004, 0.75, 0.85, 0.9499999, 1.0500001, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 4, 3, 2, 1, 0, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpl45"]
 _data = {
 &"RESET": SubResource("Animation_nla0v"),
@@ -48,15 +48,15 @@ _data = {
 script = ExtResource("1_nw4r2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, -35)
-scale = Vector2(0.6981132, 0.6013514)
+position = Vector2(-1.0000019, -14)
+scale = Vector2(0.40078077, 0.59210426)
 texture = ExtResource("1_ncv2k")
 hframes = 4
 vframes = 2
 frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -28.5)
+position = Vector2(-1, -19.5)
 shape = SubResource("RectangleShape2D_ncv2k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

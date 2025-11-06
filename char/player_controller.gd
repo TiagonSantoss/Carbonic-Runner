@@ -4,29 +4,36 @@ var active_player: Player
 var follower_player: Player
 var camera: Camera2D
 var anim_name := ""
-signal health_changed
+signal _health_changed
 var rat
 var pen
+var players: Array = []
+var can_update
 
 @export var max_distance := 700.0
 @export var follow_distance := 200.0
 #@export var follow_speed := 5000.0
+var last_scene_name := ""
 
 func _ready():
 	#process_mode = Node.PROCESS_MODE_ALWAYS      # ensures _process runs even if tree paused
 	#physics_process_mode = Node.PROCESS_MODE_ALWAYS  # ensures _physics_process runs even if tree paused
 	DamageManager.connect("player_damaged", Callable(self, "_on_player_damaged"))
 	DamageManager.connect("player_died", Callable(self, "_on_player_died"))
-	rat = preload("res://char/rato.tscn").instantiate()
-	pen = preload("res://char/pinguim.tscn").instantiate()
-	active_player = pen
-	follower_player = rat
-
 
 func set_players(active: Player, follower: Player) -> void:
+	var current_scene = get_tree().current_scene
+	print("Adding players to:", current_scene.name)
+
+	# Reparent them to the *current* scene, not the root
+	current_scene.add_child(active)
+	current_scene.add_child(follower)
+
 	active_player = active
 	follower_player = follower
 	follower_player.set_follower(true)
+	players = [active, follower]
+
 
 func switch_players():
 	var temp = active_player
@@ -80,6 +87,7 @@ func update_follower(delta: float):
 	if follower_player:
 		if follower_player.sprite1:
 			follower_player.sprite1.flip_h = is_flipped
+			follower_player.sprite_2D.flip_h = is_flipped
 			if is_flipped:
 				follower_player.sprite1.position.x = flip_offset
 			else:
@@ -154,7 +162,7 @@ func update_animations(player1, player2):
 			if anim_name == "Jump":
 				#print(name, " -> Jump chosen; vel.y:", player.velocity.y, "jump_played:", player.jump_played)
 				var speed_factor = min(player.max_jump_time / player.jump_timer, 1.0)
-				speed_mult = 2.0 * speed_factor if player.name == "player2" else 0.2 * speed_factor
+				speed_mult = 2.0 * speed_factor #if player.name == "player2" else 0.2 * speed_factor
 			else:
 				speed_mult = 1.0
 		player.sprite_2D.flip_h = not player.right
@@ -197,7 +205,12 @@ func game_over():
 	#TO DO!!!!
 	print("Both players dead → Game Over!")
 	#await 3
-	get_tree().paused = true
+	#get_tree().paused = true
+	GameTimer.stop()
 	#var game_over_scene = preload("res://ui/GameOver.tscn").instantiate()
 	#get_tree().current_scene.add_child(game_over_scene)
 	pass
+	
+func reset():
+	pen.queue_free()
+	rat.queue_free()

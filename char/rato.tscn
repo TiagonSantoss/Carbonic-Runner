@@ -145,7 +145,10 @@ _data = {
 &"Walk": SubResource("Animation_6nno7")
 }
 
-[node name="rato" instance=ExtResource("1_xqycc")]
+[node name="player2" instance=ExtResource("1_xqycc")]
+position = Vector2(-0.9999695, -75)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite1" type="Sprite2D" parent="." index="0"]
 material = ExtResource("2_3inll")

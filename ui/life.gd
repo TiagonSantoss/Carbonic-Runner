@@ -3,21 +3,20 @@ class_name LifeUI
 
 @export var life_textures: Array[Texture2D]
 @onready var icons = {
-	"Rat": $HBoxContainer/rat/rat,
-	"Pen": $HBoxContainer/pen/pen
+	"Rat": $VBoxContainer/rat/rat,
+	"Pen": $VBoxContainer/pen/pen
 }
 
 @onready var lives_digits = {
-	"Rat": $HBoxContainer/rat/Lrat,
-	"Pen": $HBoxContainer/pen/Lpen
+	"Rat": $VBoxContainer/rat/Lrat,
+	"Pen": $VBoxContainer/pen/Lpen
 }
 
 func _ready() -> void:
 	_update_display()
 	
-	if PlayerManager.has_signal("health_changed"):
-		PlayerManager.health_changed.connect(_update_display)
-		print("live changed")
+	if PlayerManager.has_signal("_health_changed"):
+		PlayerManager._health_changed.connect(_update_display)
 
 func _update_display() -> void:
 	await get_tree().create_timer(0.2).timeout

@@ -6,12 +6,11 @@ extends BaseScene
 func _ready():
 	super()
 	await get_tree().process_frame
-	var p1 = get_tree().current_scene.get_node("player1")
-	var p2 = get_tree().current_scene.get_node("player2")
-	if p1 and p2:
-		PlayerManager.set_players(player1,player2)
+	#PlayerManager.set_players(player1,player2)
 	PlayerManager.camera = camera
 	MusicManager.play_music(preload("res://world/sound/Broken Smoke Machine.wav"))
+	#await get_tree().create_timer(0.1).timeout
+	#GameTimer.stop()
 	
 func _process(delta):
 	PlayerManager.update_camera(delta)

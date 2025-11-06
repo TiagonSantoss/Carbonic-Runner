@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0pfxw2lg84tf"]
+[gd_scene load_steps=8 format=3 uid="uid://b0pfxw2lg84tf"]
 
 [ext_resource type="Script" uid="uid://cbtnmwk3c3xoe" path="res://scenes/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://b2yna8eniet0d" path="res://ui/menu/parallax_menu.tscn" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://dwwlwo00uicni" path="res://ui/menu/clouds.png" id="2_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://bdx7ku4oijfuf" path="res://ui/menu/jogar_un.png" id="4_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://cnce2jyomy6ad" path="res://ui/menu/building.png" id="4_g3eks"]
-[ext_resource type="PackedScene" uid="uid://b0spfitmjeuvu" path="res://character_selector.tscn" id="6_g3eks"]
+[ext_resource type="PackedScene" uid="uid://b0spfitmjeuvu" path="res://ui/character_selector.tscn" id="6_g3eks"]
+[ext_resource type="Texture2D" uid="uid://kijppvfrepot" path="res://ui/menu/title_mijo.png" id="6_v86rl"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -37,14 +38,24 @@ texture = ExtResource("4_g3eks")
 
 [node name="Button" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 459.0
-offset_right = 1129.0
-offset_bottom = 626.0
+offset_left = 780.0
+offset_top = 843.0
+offset_right = 1137.0
+offset_bottom = 971.0
 action_mode = 0
 icon = ExtResource("4_4ytvr")
 flat = true
 icon_alignment = 1
+expand_icon = true
+
+[node name="title_mijo" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -461.0
+offset_right = 1966.0
+offset_bottom = 848.0
+texture = ExtResource("6_v86rl")
+expand_mode = 3
 
 [node name="CharacterSelect" parent="." instance=ExtResource("6_g3eks")]
 visible = false
