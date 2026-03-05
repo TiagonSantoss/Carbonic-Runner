@@ -26,7 +26,7 @@ PlayerManager="*res://char/player_controller.gd"
 DamageManager="*res://char/damage_manager.gd"
 GameTimer="*res://ui/GameTimer.gd"
 MusicManager="*res://world/sound/MusicManager.gd"
-Command="*res://commands.gd"
+Command="*res://world/commands.gd"
 
 [display]
 
