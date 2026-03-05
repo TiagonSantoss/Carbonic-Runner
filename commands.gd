@@ -11,6 +11,8 @@ func _restart_game() -> void:
 
 	# Optional: manually reset singleton values
 	PlayerManager.reset()
+	GameTimer.reset()
+	GameTimer.start()
 
 	# Go back to main scene
 	var main_scene: String = ProjectSettings.get_setting("application/run/main_scene")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwngvt7elxy5p"
-path="res://.godot/imported/factory.png-466de71a35affd8c74a8690bd4eecffc.ctex"
+uid="uid://b6ere4hyum3an"
+path="res://.godot/imported/T_VFX_exp_dissapear.png-4a6734a6632a8651bd26ae66d66e26ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://factory.png"
-dest_files=["res://.godot/imported/factory.png-466de71a35affd8c74a8690bd4eecffc.ctex"]
+source_file="res://scenes/T_VFX_exp_dissapear.png"
+dest_files=["res://.godot/imported/T_VFX_exp_dissapear.png-4a6734a6632a8651bd26ae66d66e26ee.ctex"]
 
 [params]
 

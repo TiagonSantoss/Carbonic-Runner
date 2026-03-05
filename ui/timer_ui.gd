@@ -18,6 +18,8 @@ func _ready():
 	GameTimer.connect("time_updated", Callable(self, "_on_time_updated"))
 	GameTimer.connect("timer_stopped", Callable(self, "_on_timer_stopped"))
 
+	_update_display(GameTimer.get_time())
+
 func _on_time_updated(time: float):
 	#print(time)
 	_update_display(time)

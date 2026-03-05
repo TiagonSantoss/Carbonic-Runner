@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b71lbdgjyfsao"]
+[gd_scene format=3 uid="uid://b71lbdgjyfsao"]
 
 [ext_resource type="Script" uid="uid://ddrq5ut578r70" path="res://scenes/game_over.gd" id="1_wqhvx"]
 [ext_resource type="Texture2D" uid="uid://c15ipm5c2p2c4" path="res://ui/game_overOculosB.png" id="2_tbwuq"]
 [ext_resource type="PackedScene" uid="uid://v35arve7u1sq" path="res://ui/timer_ui.tscn" id="3_tbwuq"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=777887370]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,13 +13,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wqhvx")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1379344665]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_tbwuq")
 
-[node name="TimerUI" parent="." instance=ExtResource("3_tbwuq")]
+[node name="TimerUI" parent="." unique_id=1513092076 instance=ExtResource("3_tbwuq")]
 layout_mode = 1
 anchor_left = 0.24895833
 anchor_top = 0.3611111

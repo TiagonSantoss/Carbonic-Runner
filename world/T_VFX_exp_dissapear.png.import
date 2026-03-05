@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5ljjpxyhx1hv"
-path="res://.godot/imported/TSCompleto.png-75a297559bdd24a7466669fc4f7b6e7f.ctex"
+uid="uid://b5uu0nde1gvb8"
+path="res://.godot/imported/T_VFX_exp_dissapear.png-27637cf5158a29f50d82ee1076a5687f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TSCompleto.png"
-dest_files=["res://.godot/imported/TSCompleto.png-75a297559bdd24a7466669fc4f7b6e7f.ctex"]
+source_file="res://world/T_VFX_exp_dissapear.png"
+dest_files=["res://.godot/imported/T_VFX_exp_dissapear.png-27637cf5158a29f50d82ee1076a5687f.ctex"]
 
 [params]
 
