@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://ceysohmyny3eh" path="res://world/tileset_predios.png" id="6_uaw8k"]
 [ext_resource type="PackedScene" uid="uid://c2sdt767cpxlt" path="res://world/out_of_bounds.tscn" id="6_v7x2m"]
 [ext_resource type="PackedScene" uid="uid://v35arve7u1sq" path="res://ui/timer_ui.tscn" id="8_lt5my"]
-[ext_resource type="PackedScene" uid="uid://c6qpgboqhi5oq" path="res://barrel.tscn" id="9_5tstl"]
 [ext_resource type="PackedScene" uid="uid://bpmvankacq2p6" path="res://ui/life.tscn" id="12_cdqji"]
 [ext_resource type="Texture2D" uid="uid://cko12fkiwmjq7" path="res://ui/hud_numbers-2.png" id="13_ht1us"]
 [ext_resource type="Texture2D" uid="uid://bgt4w0tjev1in" path="res://ui/hud_numbers-1.png" id="14_lpxjy"]
@@ -667,15 +666,6 @@ connected_scene = "inside"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=407539639]
 position = Vector2(4012.6914, -1170)
 shape = SubResource("RectangleShape2D_uaw8k")
-
-[node name="RigidBody2D" parent="." unique_id=92173783 instance=ExtResource("9_5tstl")]
-position = Vector2(8706.001, -2964.9998)
-scale = Vector2(1.9600022, 1.6400049)
-collision_layer = 3
-collision_mask = 4
-knockback_force = Vector2(3000, -600)
-respawn_time = 2.0
-bounce_impulse = -1000.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=409160255]
 
